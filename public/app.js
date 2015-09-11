@@ -13,7 +13,7 @@ function pageLoad() {
     console.log(res);
   var username = res.username;
   var user = username[0].toUpperCase()+username.slice(1).toLowerCase();
-    $("#username").append("<p>Welcome to the GA WDI-21 Weather App, "+user+"</p>");
+    $("#welcome").append("<p>Welcome, "+user+"</p>");
 });
   $("form").on("submit", function(e){
         e.preventDefault();

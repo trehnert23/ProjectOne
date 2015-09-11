@@ -40,6 +40,7 @@ app.use(function (req,res,next){
     req.currentUser = function (cb){
         db.User.findOne({_id: req.session.userId}, function (err, user) {
                     req.user = user;
+
                     cb(null, user);
                 }
             )
@@ -142,7 +143,7 @@ app.get("/logout", function endSession (req,res){
 //Show Profile
 
 app.get("/profile", function showProfile (req, res){
-    var username = req.body.username;
+    // var username = req.body.username;
     req.currentUser(function (err, user) {
     if (user === null) {
       res.redirect("/login")
@@ -160,6 +161,11 @@ app.get("/username", function provideUsername (req, res){
     });
 
 
+});
+//Delete session
+app.delete("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/login");
 });
 
 //City Routes

@@ -90,7 +90,8 @@ userSchema.statics.createSecure = function (username, password, cb){
       cb(null, user);
     } else {
       // user found, but password incorrect
-      cb("password incorrect", user)
+      // cb("password incorrect", user) would let user in regarless of password
+      cb("password incorrect", null)
     }
   });
  }; 

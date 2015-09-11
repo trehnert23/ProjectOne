@@ -36,6 +36,19 @@ a:hover {
   color: #333333;
   text-decoration: none;
 }
+h1 {
+	font-size: 80px;	
+}
+
+.topbar {
+	background-color: #011c28;
+	height: 55px;
+	padding-top: 10px;
+	padding-right: 20px;
+	text-align: right;
+	margin-bottom: 100px;
+}
+}
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
   color: #919191;
