@@ -12,6 +12,10 @@ var express = require('express'),
 var views = path.join(process.cwd(), "/views");
             // or we can write 
             //path.join("projectOne/", "/public");
+ // CONFIG //
+// serve js & css files
+app.use("/static", express.static("public"));
+app.use("/vendor", express.static("bower_components"));           
 
 //APPs
 app.use(bodyParser.urlencoded({extended: true})); // parse POSTed data
@@ -34,8 +38,7 @@ app.use(function (req,res,next){
     };
     //find the current user
     req.currentUser = function (cb){
-        db.User.findOne({_id: req.session.userId},
-                function (err, user) {
+        db.User.findOne({_id: req.session.userId}, function (err, user) {
                     req.user = user;
                     cb(null, user);
                 }
@@ -49,56 +52,16 @@ app.use(function (req,res,next){
      next();
 });
     
-var climate = {
-coord: {
-lon: -122.42,
-lat: 37.77
-},
-weather: [
-{
-id: 802,
-main: "Clouds",
-description: "scattered clouds",
-icon: "03n"
-}
-],
-base: "cmc stations",
-main: {
-temp: 307.94,
-pressure: 1005,
-humidity: 79,
-temp_min: 302.04,
-temp_max: 315.15
-},
-wind: {
-speed: 3.6,
-deg: 20
-},
-clouds: {
-all: 40
-},
-dt: 1441846612,
-sys: {
-type: 1,
-id: 4250,
-message: 0.0153,
-country: "US",
-sunrise: 1441892835,
-sunset: 1441938325
-},
-id: 5391959,
-name: "San Francisco",
-cod: 200
-}
 
 //VIEWS
 
 
 app.get("/home",function (req,res){
 
-res.sendFile(path.join(views, "index.html"));
+res.sendFile(path.join(views, "login.html"));
 
 });
+
 
 app.get("/signup",function (req,res){
 
@@ -112,20 +75,26 @@ res.sendFile(path.join(views, "login.html"));
 
 });
 
+// app.get("/results", function (req, res){
+// res.sendFile(path.join(views, "results.html"));
+// });
+
 // within the profile page
 // FIND USER IN DB AND SHOW SCOREBAORDS
 // VIA RES.SEND(SCOREBOARDDATA);
-app.get("/profile",function (req,res){
-// shows a specifi user
-// allow user to add a new scoreboard
-// allow user to view all of their saved scoreboards
-// allow user ot remove a scoreboard
-// allow user to update data in scorebaord
-res.sendFile(path.join(views, "profile.html"));
+// app.get("/profile",function (req,res){
+// // shows a specifi user
+// // allow user to add a new scoreboard
+// // allow user to view all of their saved scoreboards
+// // allow user ot remove a scoreboard
+// // allow user to update data in scorebaord
+// res.sendFile(path.join(views, "profile.html"));
 
-});
+// });
 
 // APP.POST FOR EACH Page
+
+/*User Routes*/
 
 //SignUp
 app.post("/signup", function createUser(req, res){
@@ -136,7 +105,7 @@ app.post("/signup", function createUser(req, res){
     if ( user ) {
         req.login(user);
       // res.cookie("guid", user._id, { signed: true });
-      res.redirect("/api/profile")
+      res.redirect("/profile")
     } else {
       res.redirect("/login");
     }
@@ -161,7 +130,6 @@ app.post("/login", function newSession(req,res){
         }
 
     })
-
 });
 
 //Logout
@@ -171,19 +139,41 @@ app.get("/logout", function endSession (req,res){
     res.redirect("/home");
 });
 
-//Get Profile
+//Show Profile
 
-app.get("/api/profile", function showProfile (req, res){
-    // var guid = req.signedCookies.guid;
-    db.User.find({_id: guid}, function (err, user){
-        res.send({
-            request_headers: req.headers,
-            user: user || "NOT FOUND"
-        });
-    })
+app.get("/profile", function showProfile (req, res){
+    var username = req.body.username;
+    req.currentUser(function (err, user) {
+    if (user === null) {
+      res.redirect("/login")
+    } else {
+      res.sendFile(path.join(views, "profile.html"));
+    }
+  })
+});
+//Show Username
+app.get("/username", function provideUsername (req, res){
+    req.currentUser(function (err, user){
+      if (user){
+        res.send(user);
+      }
+    });
+
+
 });
 
+//City Routes
 
+// app.get('/results', function(req, res) {
+//   var cityWeather = req.body.city;
+
+//   request('http://api.openweathermap.org/data/2.5/weather?' + place, function(err, response, body) {
+//       if(!err) {
+//         var city = JSON.parse(body);
+//         console.log(city);
+//         res.render('results.ejs', {location: city});
+//       }
+//   });
 // });
     var listener = app.listen(3000, function () {
   console.log("Listening on port " + listener.address().port);

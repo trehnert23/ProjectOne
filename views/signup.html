@@ -1,53 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>login lab</title>
+  <title>SignUP</title>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
+  <!-- ToEat.ly -->
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
-<form method="POST" action="/signup">
-	<h1>Create New User Account</h1>
-      <h2>Sign Up Form</h2>
-
-	<div>
-		<span>First Name</span>
-		<input type="text" placeholder="First Name" aria-div="First Name" name="firstName">
+	<!-- REGISTRATION FORM -->
+<div class="text-center" style="padding:50px 0">
+	<div class="logo">register</div>
+	<!-- Main Form -->
+	<div class="login-form-1">
+		<form id="register-form" class="text-left" method ="POST" action="/signup">
+			<div class="login-form-main-message"></div>
+			<div class="main-login-form">
+				<div class="login-group">
+					<div class="form-group">
+						<label for="reg_username" class="sr-only">Email address</label>
+						<input type="text" class="form-control" id="reg_username" name="username" placeholder="username" required>
+					</div>
+					<div class="form-group">
+						<label for="reg_password" class="sr-only">Password</label>
+						<input type="password" class="form-control" id="reg_password" name="password" placeholder="password" required>
+					</div>
+					<div class="form-group">
+						<label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+						<input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
+					</div>
+					
+					<div class="form-group">
+						<label for="reg_email" class="sr-only">Email</label>
+						<input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
+					</div>
+					<div class="form-group">
+						<label for="reg_fullname" class="sr-only">Full Name</label>
+						<input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="full name">
+					</div>
+					
+					<div class="form-group login-group-checkbox">
+						<input type="radio" class="" name="reg_gender" id="male" placeholder="username">
+						<label for="male">male</label>
+						
+						<input type="radio" class="" name="reg_gender" id="female" placeholder="username">
+						<label for="female">female</label>
+						<input type="radio" class="" name="reg_gender" id="female" placeholder="username">
+						<label for="unknown">not into labels?</label>
+					</div>
+					
+					<div class="form-group login-group-checkbox">
+						<input type="checkbox" class="" id="reg_agree" name="reg_agree">
+						<label for="reg_agree">i agree with <a href="#">terms</a></label>
+					</div>
+				</div>
+				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+			</div>
+			<div class="etc-login-form">
+				<p>already have an account? <a href="#">login here</a></p>
+			</div>
+		</form>
 	</div>
-   
-	<div>
-		<span>Last Name</span>
-		<input type="text"placeholder="Last Name"aria-div="Last Name" name="lastName">
-	</div>
-        
-	<div>
-		<span>Email Address</span>
-		<input type="email" name="email" aria-div="Email Address" placeholder="Email Address">
-	</div>
-       
-	<div class="checkbox">
-			<input type="checkbox" autocomplete="off">
-		<span>Show password</span>
-	</div>
-
-	<div>
-	<div>
-			<input type="radio" name="gender-selector" value="1" autocomplete="off">
-		<span>Male</span>
-	</div>
-	<div>
-			<input type="radio" name="gender-selector" value="2">
-		<span>Female</span>
-	</div>
-	<div class="no-gender">
-			<input type="radio" name="gender-selector" value="0" autocomplete="off">
-		<span>Not Into Labels</span>
-	</div>
-	</div>	
-
-	<div>
-			<input type="text" name="username" placeholder="username" required>
-			<input type="password" name="password" placeholder="password" required>
-			<input type="submit" value="Signup">
-	</div>			
-  </form>
+	<!-- end:Main Form -->
+</div>
 </body>
 </html>
