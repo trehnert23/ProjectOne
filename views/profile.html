@@ -15,134 +15,16 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300" rel="stylesheet" type="text/css">
 
 		<script type="text/javascript" src="static/app.js"> </script> 
+		<link rel="stylesheet" type="text/css" href="static/main.css">
 		<!-- <link rel="stylesheet" type="text/css" href="static/style.css"> -->
 
-<style>
-
-h1 {
-	font-size: 50px;	
-}
-
-.topbar {
-	background-color: red;
-	height: 55px;
-	padding-top: 10px;
-	padding-right: 20px;
-	text-align: right;
-}
-
-#username {
-	font-size: 18px;
-	float: left;
-	color: black;
-	margin-top: 4px;
-	margin-right: 15px;
-	font-family: 'Roboto', sans-serif;
-	font-weight: lighter;
-	letter-spacing: 1px;	
-}
-
-.content {
-	display: inline-block;
-}
-
-h2 {
-	margin-top: -10px;
-	font-size: 25px;
-}
-
-.container {
-	text-align: center;
-	width: 560px;
-	height: 639px;
-	margin-left: -270px;
-	left: 50%;
-	position: fixed;
-}
-
-.citySearch {
-	margin: 0 auto;
-	text-align: center;
-
-}
-
-#search {
-	width: 410px;
-}
-
-.scrollable-menu {
-    width: 300px;
-    max-height: 200px;
-    overflow-x: hidden;
-
-}
-
-#delete {
-	float: right;
-}
-
-.btn-group {
-	width: 300px;
-	margin-top: 40px;
-
-}
-
-.pull-right {
-	float: right;
-}
-
-#logout {
-	text-decoration: none;
-	color: black;
-}
-
-img {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	width: 360px;
-	height: auto;
-	margin-left: 30px;
-
-}
-
-footer {
-	margin-left: 30px;
-
-}
-
-.deletes {
-	float: right;
-	margin-top: -24px;
-	margin-right: 15px;
-}
-
-.btn-circle {
-  width: 17px;
-  height: 17px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-
-.glyphicon-minus {
-	float: right;
-	margin-top: -6px;
-	margin-right: 2px;
-
-}
-
-
-</style>
 
 
 </head>
 <body>
 <div class="topbar">
 		<div class="content">
-			<span id="username"></span>
+			<strong><span id="welcome"></span></strong>
 			<button type="submit" class="btn btn-default"><a id="logout" href="/logout">Logout</a></button>
 		</div>
 	</div>
@@ -152,15 +34,19 @@ footer {
 		<h1>The WDI-21 Weather App</h1>
 	
 			<h2>Checkout The Weather?</h2>
-
+<div class = "col-md-12">
 <form class="citySearch" role="search">
   <div class="form-group">
+  	<div class ="col-md-8">
     <input id="search" type="text" class="form-control input-md" placeholder="City Name" name="q">
+    </div>
+    <div class ="col-md-4">
     <button type="submit" class="btn btn-default">Search</button>
+	</div>
   </div>
   
 </form>
-
+</div>
 <div class="list-weather" id="div-city"></div>
 
 <div class="btn-group">
@@ -181,15 +67,11 @@ footer {
 				</button>
 			</form>
 		</span>
-
-<!-- 	</li>
- <% } %>
-   </ul> -->
 </div>
 	</div>
 </div>
 
-	<img src="https://media.giphy.com/media/XK5fVuK8epOM/giphy.gif"> 
+<!-- 	<img src="https://media.giphy.com/media/XK5fVuK8epOM/giphy.gif" id="gif">  -->
 
 
 </body>
